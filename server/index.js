@@ -32,6 +32,21 @@ app.post("/api/students", (req, res) => {
   res.status(200).send(students);
 });
 
+app.get("/api/students/:idx", (req, res) => {
+  const idx = +req.params.idx;
+  if (idx < 0 || idx >= students.length) {
+    if (idx < 0) {
+      rollbar.error("Someone tried to input a index less than 0");
+    } else {
+      rollbar.error(
+        "Someone tried to input a index greater than the number of students"
+      );
+    }
+    return res.sendStatus(400);
+  }
+  res.status(200).send(students[idx]);
+});
+
 app.get("/test", (req, res) => {
   console.log("hit");
   try {
