@@ -38,6 +38,7 @@ app.get("/test", (req, res) => {
     doSomething();
   } catch (e) {
     rollbar.error("Something went wrong", e);
+    res.sendStatus(404);
     return;
   }
   res.status(404).send(res);
