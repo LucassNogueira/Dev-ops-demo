@@ -32,6 +32,17 @@ app.post("/api/students", (req, res) => {
   res.status(200).send(students);
 });
 
+app.get("/test", (req, res) => {
+  console.log("hit");
+  try {
+    doSomething();
+  } catch (e) {
+    rollbar.error("Something went wrong", e);
+    return;
+  }
+  res.status(404).send(res);
+});
+
 app.delete("/api/students/:idx", (req, res) => {
   if (req.params.idx === "0") {
     1;
