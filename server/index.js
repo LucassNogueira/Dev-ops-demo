@@ -13,6 +13,7 @@ const rollbar = new Rollbar({
 
 app.use(express.json());
 app.use(cors());
+app.use(express.static("public"));
 const students = ["jimmy", "sam", "ben", "peter"];
 
 app.get("/", (req, res) => {
